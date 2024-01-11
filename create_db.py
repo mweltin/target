@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-files  = os.listdir('data')
+files  = os.listdir('raw_data')
 con = sqlite3.connect("target.sqlite")
 cur = con.cursor()
 cur.execute("CREATE TABLE target ( file_name VARCHAR(255) NOT NULL UNIQUE);")

@@ -1,7 +1,7 @@
 import cv2
 
 # Load the image
-img = cv2.imread('data/IMG_0042.jpeg')
+img = cv2.imread('raw_data/IMG_0042.jpeg')
 lower = img.copy()
 
 # Create a Gaussian Pyramid

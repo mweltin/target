@@ -1,7 +1,7 @@
 import cv2 as cv
 from matplotlib import pyplot as plt
 
-img = cv.imread('data/IMG_0042.jpeg', cv.IMREAD_GRAYSCALE)
+img = cv.imread('raw_data/IMG_0042.jpeg', cv.IMREAD_GRAYSCALE)
 assert img is not None, "file could not be read, check with os.path.exists()"
 edges = cv.Canny(img,100,200)
 cv.imshow('canny edges', edges)
