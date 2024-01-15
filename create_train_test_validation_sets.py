@@ -52,7 +52,7 @@ def main(args):
         files = sorted(glob.glob(os.path.join(path, '*.' + args.label_extension)))
         number_of_files = len(files)
         number_of_training_files = int( number_of_files * args.train_per/100 )
-        number_of_testing_files = int( number_of_files * args.train_per/100 )
+        number_of_testing_files = int( number_of_files * args.test_per/100 )
         number_of_validation_files = int( number_of_files * args.validate_per/100 )
         if number_of_files != sum([number_of_training_files, number_of_testing_files, number_of_validation_files ]):
             print("warning files can not be split according to percentages given.")
@@ -61,7 +61,7 @@ def main(args):
 
         for x in range(number_of_training_files):
             # get file list. this will be used so we don't add the same file to two different directories
-            random_element = random.choice(files)
+            random_element = files.pop(random.randrange(len(files)))
             file_name = os.path.splitext(random_element)
             for list_item in glob.glob(file_name[0]+'.*'):
                 shutil.copy(list_item, place_data_in['TRAIN'])
@@ -69,14 +69,14 @@ def main(args):
         #test
 
         for x in range(number_of_testing_files):
-            random_element = random.choice(files)
+            random_element = files.pop(random.randrange(len(files)))
             file_name = os.path.splitext(random_element)
             for list_item in glob.glob(file_name[0] + '.*'):
                 shutil.copy(list_item, place_data_in['TEST'])
 
         #validate
         for x in range(number_of_validation_files):
-            random_element = random.choice(files)
+            random_element = files.pop(random.randrange(len(files)))
             file_name = os.path.splitext(random_element)
             for list_item in glob.glob(file_name[0] + '.*'):
                 shutil.copy(list_item, place_data_in['VALIDATION'])
